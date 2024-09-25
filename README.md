@@ -14,4 +14,4 @@ Then gets rref of the picture.
 
 
 ## Notes
-Hoping I can finish before the midterm tomorrow, since I will need it to do rref.
+Hoping I can finish before the midterm tomorrow, since I will need it to do rref fast, instead of typing on computer.
