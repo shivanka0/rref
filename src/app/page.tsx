@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useRef } from "react";
 import Tesseract from 'tesseract.js';
+import OpenAI from 'openai';
+
 
 export default function HomePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -8,6 +10,9 @@ export default function HomePage() {
   const captureRef = useRef<HTMLButtonElement>(null);
   const errorMsgRef = useRef<HTMLSpanElement>(null);
   var rref = require('rref');
+  const client = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY, dangerouslyAllowBrowser: true
+  });
   useEffect(() => {
     const constraints = {
       audio: false,
@@ -36,24 +41,29 @@ export default function HomePage() {
     }
 
     var text = '';
+    var parsedMatrix = " ";
     // does the magic
     async function recognizeAndSolve() {
       if (canvasRef.current) {
         const dataUrl = canvasRef.current.toDataURL();
         const result = await Tesseract.recognize(dataUrl, 'eng');
         text = result.data.text;
-        // const matrix = parseMatrix(text);
+        const response = await client.chat.completions.create({
+          messages: [{ role: 'user', content: 'do the row reduction echolon form of the matrix or vector equation or system of equations or whatever this is: ' + text}],
+          model: 'gpt-4o',
+        });
+        parsedMatrix = response.choices[0]?.message.content ?? '';
         // const rrefMatrix = rref(matrix);
-        console.log(text);
+        console.log(parsedMatrix);
       }
     }
 
-    // TODO: implement parseMatrix
-    function parseMatrix(text: string): number[][] {
-      // Implement a function to parse the recognized text into a matrix
-      // This is a placeholder for the actual parsing logic
-      return [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-    }
+    // // TODO: implement parseMatrix
+    // function parseMatrix(text: string): number[][] {
+    //   // Implement a function to parse the recognized text into a matrix
+    //   // This is a placeholder for the actual parsing logic
+    //   return [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+    // }
 
     init();
 
@@ -66,7 +76,7 @@ export default function HomePage() {
             recognizeAndSolve();
             const resultText = document.getElementsByClassName('result-text');
             if (resultText[0]) {
-              (resultText[0] as HTMLElement).innerText = text;
+              (resultText[0] as HTMLElement).innerText = parsedMatrix;
             }
           } catch (error) {
             console.error('Error recognizing and solving:', error);
