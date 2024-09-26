@@ -82,7 +82,7 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div className="flex flex-row justify-left">
-        <div className="flex flex-col justify-left ">
+        <div className="flex flex-col justify-left p-10">
             {/* Webcam */}
             <div className="video-wrap">
                 <video ref={videoRef} playsInline muted autoPlay></video>
