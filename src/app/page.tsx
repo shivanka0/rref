@@ -11,7 +11,7 @@ export default function HomePage() {
   const errorMsgRef = useRef<HTMLSpanElement>(null);
   var rref = require('rref');
   const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY, dangerouslyAllowBrowser: true
+    apiKey: process.env.OPENAI_API_KEY || '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', dangerouslyAllowBrowser: true
   });
   useEffect(() => {
     const constraints = {
