@@ -6,7 +6,7 @@ Then gets rref of the picture.
 
 ## Todo
 
-- [ ] make it deploy
+- [x] make it deploy
 - [ ] setup camera
 - [ ] setup rref
 - [ ] setup ETL from camera => rref mechanic => user eyes
