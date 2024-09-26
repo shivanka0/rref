@@ -80,21 +80,21 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="flex flex-row justify-left">
-        <div className="flex flex-col justify-left p-10">
+    <main className="">
+      <div className="flex flex-row justify-center">
+        <div className="picture-container flex flex-col justify-left p-10 ">
             {/* Webcam */}
             <div className="video-wrap">
                 <video ref={videoRef} playsInline muted autoPlay></video>
               </div>
               {/* Capture */}
               <div className="controller">
-                <button ref={captureRef}>Capture</button>
+                <button className="capture-button bg-white" ref={captureRef}>Capture</button>
               </div>
               {/* Canvas */}
               <canvas ref={canvasRef} width="640" height="480"></canvas>
         </div>
-        <h3 className="result-text flex flex-col justify-left p-10 bg-white text-black"></h3>
+        <h3 className="result-text flex flex-col justify-right p-20 m-10 bg-white"></h3>
       </div>
 
 
