@@ -15,6 +15,7 @@ export default function HomePage() {
       video: {
         width: 640,
         height: 480,
+        facingMode: 'environment',
       },
     };
 
