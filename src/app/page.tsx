@@ -92,7 +92,7 @@ export default function HomePage() {
               </div>
               {/* Canvas */}
               <canvas ref={canvasRef} width="640" height="480"></canvas>
-              <h3 className="result-text flex flex-col justify-center p-20 m-10 bg-white"></h3>
+              <h3 className="result-text flex flex-col items-center justify-center p-20 m-10 bg-white"></h3>
 
       </div>
 
