@@ -81,8 +81,7 @@ export default function HomePage() {
 
   return (
     <main className="">
-      <div className="flex flex-row justify-center">
-        <div className="picture-container flex flex-col justify-left p-10 ">
+      <div className="flex flex-col items-center justify-center p-10 ">
             {/* Webcam */}
             <div className="video-wrap">
                 <video ref={videoRef} playsInline muted autoPlay></video>
@@ -93,8 +92,8 @@ export default function HomePage() {
               </div>
               {/* Canvas */}
               <canvas ref={canvasRef} width="640" height="480"></canvas>
-        </div>
-        <h3 className="result-text flex flex-col justify-right p-20 m-10 bg-white"></h3>
+              <h3 className="result-text flex flex-col justify-center p-20 m-10 bg-white"></h3>
+
       </div>
 
 
