@@ -83,15 +83,15 @@ export default function HomePage() {
     <main className="">
       <div className="flex flex-col items-center justify-center p-10 ">
             {/* Webcam */}
-            <div className="video-wrap">
+            <div className="video-wrap flex flex-col items-center justify-center">
                 <video ref={videoRef} playsInline muted autoPlay></video>
               </div>
               {/* Capture */}
-              <div className="controller">
-                <button className="capture-button bg-white" ref={captureRef}>Capture</button>
+              <div className="controller flex flex-col items-center justify-centers">
+                <button className="capture-button bg-white flex flex-col items-center justify-center" ref={captureRef}>Capture</button>
               </div>
               {/* Canvas */}
-              <canvas ref={canvasRef} width="640" height="480"></canvas>
+              <canvas ref={canvasRef} className="flex flex-col items-center justify-center" width="640" height="480"></canvas>
               <h3 className="result-text flex flex-col items-center justify-center p-20 m-10 bg-white"></h3>
 
       </div>
