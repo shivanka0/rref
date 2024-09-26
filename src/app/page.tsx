@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef } from "react";
 import Tesseract from 'tesseract.js';
-import Link from "next/link";
 
 export default function HomePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,12 +35,13 @@ export default function HomePage() {
       }
     }
 
+    var text = '';
     // does the magic
     async function recognizeAndSolve() {
       if (canvasRef.current) {
         const dataUrl = canvasRef.current.toDataURL();
         const result = await Tesseract.recognize(dataUrl, 'eng');
-        const text = result.data.text;
+        text = result.data.text;
         // const matrix = parseMatrix(text);
         // const rrefMatrix = rref(matrix);
         console.log(text);
@@ -59,10 +59,21 @@ export default function HomePage() {
 
     if (captureRef.current && canvasRef.current && videoRef.current) {
       const context = canvasRef.current.getContext('2d');
-      captureRef.current.addEventListener('click', () => {
-        if (context && videoRef.current) {
+      captureRef.current.addEventListener('click', async () => {
+        if (context && videoRef.current instanceof HTMLVideoElement) {
           context.drawImage(videoRef.current, 0, 0, 640, 480);
-          recognizeAndSolve();
+          try {
+            recognizeAndSolve();
+            const resultText = document.getElementsByClassName('result-text');
+            if (resultText[0]) {
+              (resultText[0] as HTMLElement).innerText = text;
+            }
+          } catch (error) {
+            console.error('Error recognizing and solving:', error);
+            if (errorMsgRef.current) {
+              errorMsgRef.current.innerHTML = `Error recognizing and solving: ${error}`;
+            }
+          }
         }
       });
     }
@@ -80,6 +91,7 @@ export default function HomePage() {
       </div>
       {/* Canvas */}
       <canvas ref={canvasRef} width="640" height="480"></canvas>
+      <h3 className="result-text"></h3>
       {/* Error Message */}
       <span ref={errorMsgRef}></span>
     </main>

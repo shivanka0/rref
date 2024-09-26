@@ -7,9 +7,11 @@ Then gets rref of the picture.
 ## Todo
 
 - [x] make it deploy
-- [ ] setup camera
-- [ ] setup rref
-- [ ] setup ETL from camera => rref mechanic => user eyes
+- [x] setup camera
+- [x] on backcamera for phones
+- [x] setup rref
+- [x] setup pic to text (tesseract)"not as accurate as I thought it would be"
+- [ ] setup text to matrix (rref)
 - [ ] make it pretty, if possible
 
 
