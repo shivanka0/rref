@@ -23,7 +23,7 @@ export default function HomePage() {
         handleSuccess(stream);
       } catch (e) {
         if (errorMsgRef.current) {
-          errorMsgRef.current.innerHTML = `navigator.getUserMedia.error:${e.toString()}`;
+          errorMsgRef.current.innerHTML = `navigator.getUserMedia.error:${(e as Error).toString()}`;
         }
       }
     }
